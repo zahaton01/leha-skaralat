@@ -1,0 +1,17 @@
+        <div class="row">
+            {% for course in courses %}
+            <div class="mb-4 mb-lg-4 col-sm-6 col-md-6 col-lg-3">
+                <div class="block-service-1-card">
+
+                    <a href="{{ path('single_course', { 'course': course.id }) }}" class="thumbnail-link d-block mb-4"><img src="{{ asset('uploads/courseimages/' ~ course.imageFilename) }}" alt="Image" class="img-fluid" style="height: 150px;"></a>
+                    <h3 class="block-service-1-heading mb-3"><a href="{{ path('single_course', { 'course': course.id }) }}">{{course.title}}</a></h3>
+                    <div class="block-service-1-excerpt"><p>{{course.description |slice(0, 55) }}...</p></div>
+
+                    <p><a href="{{ path('single_course', { 'course': course.id }) }}" class="d-inline-flex align-items-center block-service-1-more"><span>Подробнее</span> <span class="icon-keyboard_arrow_right icon"></span></a></p>
+                </div>
+            </div>
+
+            {% endfor %}
+
+        </div>
+

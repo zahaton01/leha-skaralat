@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="ru">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <title>{% block title %}Skarlat Tetha Studio{% endblock %}</title>
+        {% block stylesheets %}
+            <link href="https://fonts.googleapis.com/css?family=Rubik:400,700" rel="stylesheet">
+            <link rel="stylesheet" href="{{ asset('assets/framework/fontawesome-5.13.0/css/fontawesome.min.css') }}">
+            <link rel="stylesheet" href="{{ asset('assets/main/css/bootstrap.min.css') }}">
+            <link rel="stylesheet" href="{{ asset('assets/main/css/style.css') }}">
+
+            <link rel="stylesheet" href="{{ asset('assets/main/fonts/icomoon/style.css') }}">
+            <link rel="stylesheet" href="{{ asset('assets/main/css/magnific-popup.css') }}">
+            <link rel="stylesheet" href="{{ asset('assets/main/css/jquery-ui.css') }}">
+            <link rel="stylesheet" href="{{ asset('assets/main/css/owl.carousel.min.css') }}">
+            <link rel="stylesheet" href="{{ asset('assets/main/css/owl.theme.default.min.css') }}">
+            <link rel="stylesheet" href="{{ asset('assets/main/css/bootstrap-datepicker.css') }}">
+            <link rel="stylesheet" href="{{ asset('assets/main/fonts/flaticon/font/flaticon.css') }}">
+            <link rel="stylesheet" href="{{ asset('assets/main/css/aos.css') }}">
+            <link rel="stylesheet" href="{{ asset('assets/main/css/rangeslider.css') }}">
+        {% endblock %}
+    </head>
+    <body>
+    <div class="site-wrap">
+    <div class="site-mobile-menu">
+        <div class="site-mobile-menu-header">
+            <div class="site-mobile-menu-close mt-3">
+                <span class="icon-close2 js-menu-toggle"></span>
+            </div>
+        </div>
+        <div class="site-mobile-menu-body"></div>
+    </div>
+
+    <header class="site-navbar" role="banner">
+
+        <div class="container">
+            <div class="row align-items-center">
+
+                <div class="col-11 col-xl-4">
+                    <h1 class="mb-0 site-logo"><a href="{{ path('home') }}" class="text-white mb-0">Skarlat Theta Studio<span class="text-primary">.</span> </a></h1>
+                </div>
+                <div class="col-12 col-md-8 d-none d-xl-block">
+                    <nav class="site-navigation position-relative text-right" role="navigation">
+
+                        <ul class="site-menu js-clone-nav mr-auto d-none d-lg-block">
+                            <li><a href="{{ path('home') }}"><span>Главная</span></a></li>
+                            <li class="has-children">
+                                <a href=""><span>Услуги</span></a>
+                                <ul class="dropdown arrow-top">
+                                    <li><a href="{{ path('free_courses') }}">Бесплатные курсы</a></li>
+                                    <li><a href="{{ path('paid_courses') }}">Платные курсы</a></li>
+                                </ul>
+                            </li>
+                            <li><a href="{{ path('about_me') }}"><span>Обо мне</span></a></li>
+                            <li><a href="{{ path('contact_us') }}"><span>Контакты</span></a></li>
+                            {% if is_granted('ROLE_CLIENT') %}
+                            <li><a href="{{ path('paid_courses') }}" class="btn btn-primary btn-pill"><span>Платные курсы</span></a></li>
+                            {% elseif is_granted('ROLE_ADMIN') %}
+                            <li><a href="{{ path('admin_home') }}" class="btn btn-primary btn-pill" target="_blank"><span>Админка</span></a></li>
+                                {% else %}
+                                    <li><a href="{{ path('app_login') }}" class="btn btn-primary btn-pill" target="_blank"><span>Авторизация</span></a></li>
+                            {% endif %}
+                        </ul>
+                    </nav>
+                </div>
+
+
+                <div class="d-inline-block d-xl-none ml-md-0 mr-auto py-3" style="position: relative; top: 3px;"><a href="#" class="site-menu-toggle js-menu-toggle text-white"><span class="icon-menu h3"></span></a></div>
+
+            </div>
+        </div>
+    </header>
+
+
+        {% block body %}{% endblock %}
+
+        <footer class="site-footer">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-9">
+                        <div class="row">
+                            <div class="col-md-6 mb-5 mb-lg-0 col-lg-3">
+                                <h2 class="footer-heading mb-4">Топ страниц</h2>
+                                <ul class="list-unstyled">
+                                    <li><a href="#">Обо мне</a></li>
+                                    <li><a href="#">Услуги</a></li>
+                                    <li><a href="#">Получить премиум доступ</a></li>
+                                    <li><a href="#">Контакты</a></li>
+                                </ul>
+                            </div>
+                            <div class="col-md-6 mb-5 mb-lg-0 col-lg-3">
+                                <h2 class="footer-heading mb-4">Мои услуги</h2>
+                                <ul class="list-unstyled">
+                                    <li><a href="#">Видеокурсы</a></li>
+                                    <li><a href="#">Аудиозаписи</a></li>
+                                    <li><a href="#">Прямые эфиры</a></li>
+                                    <li><a href="#">Личные консультации</a></li>
+                                </ul>
+                            </div>
+                            <div class="col-md-6 mb-5 mb-lg-0 col-lg-3">
+                                <h2 class="footer-heading mb-4">Features</h2>
+                                <ul class="list-unstyled">
+                                    <li><a href="#">Сертификаты</a></li>
+                                    <li><a href="#">Отзывы</a></li>
+                                    <li><a href="#">Правила сотрудничества</a></li>
+                                </ul>
+                            </div>
+                            <div class="col-md-6 mb-5 mb-lg-0 col-lg-3" style="text-align: center;">
+                                <h2 class="footer-heading mb-4">Я в соцсетях</h2>
+                                <a href="#" class="pl-0 pr-3"><span class="icon-telegram"></span></a>
+                                <a href="#" class="pl-3 pr-3"><span class="icon-whatsapp"></span></a>
+                                <a href="#" class="pl-3 pr-3"><span class="icon-instagram"></span></a>
+                                <div><p></p></div>
+                                <div>
+                                    <p><a href="#" class="btn btn-primary btn-pill" style="">Получить доступ</a></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3">
+                        <h2 class="footer-heading mb-4">Подписаться на рассылку</h2>
+                        <form action="#" method="post" class="subscription" style="padding-top: 40px">
+                            <div class="input-group mb-3  d-flex align-items-stretch">
+                                <input type="text" class="form-control bg-transparent" placeholder="Ваш Email" aria-label="Enter Email" aria-describedby="button-addon2">
+                                <button class="btn btn-primary text-white" type="button" id="button-addon2">Отправить</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <div class="row pt-5 mt-5">
+                    <div class="col-12 text-md-center text-left">
+                        <p>
+                            Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | Сайт создан с  <i class="icon-heart text-danger" aria-hidden="true"></i> компанией <a href="https://itify.com.ua" target="_blank" >Itify</a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </div>
+        {% block javascripts %}
+        <!-- Optional JavaScript -->
+        <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+        <script src="https://code.jquery.com/jquery-3.4.1.min.js" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+                integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+                crossorigin="anonymous"></script>
+    <script src="{{ asset('assets/framework/bootstrap-4.4.1/js/bootstrap.min.js') }}"></script>
+            <script src="{{ asset('assets/framework/vue/vue.js') }}"></script>
+
+
+            <script src="{{ asset('assets/main/js/jquery-3.3.1.min.js') }}"></script>
+            <script src="{{ asset('assets/main/js/jquery-migrate-3.0.1.min.js') }}"></script>
+
+            <script src="{{ asset('assets/main/js/jquery-ui.js') }}"></script>
+            <script src="{{ asset('assets/main/js/popper.min.js') }}"></script>
+            <script src="{{ asset('assets/main/js/bootstrap.min.js') }}"></script>
+            <script src="{{ asset('assets/main/js/owl.carousel.min.js') }}"></script>
+            <script src="{{ asset('assets/main/js/jquery.stellar.min.js') }}"></script>
+            <script src="{{ asset('assets/main/js/jquery.countdown.min.js') }}"></script>
+            <script src="{{ asset('assets/main/js/jquery.magnific-popup.min.js') }}"></script>
+            <script src="{{ asset('assets/main/js/jquery.animateNumber.min.js') }}"></script>
+            <script src="{{ asset('assets/main/js/jquery.waypoints.min.js') }}"></script>
+
+            <script src="{{ asset('assets/main/js/bootstrap-datepicker.min.js') }}"></script>
+            <script src="{{ asset('assets/main/js/aos.js') }}"></script>
+            <script src="{{ asset('assets/main/js/rangeslider.min.js') }}"></script>
+
+
+            <script src="{{ asset('assets/main/js/typed.js') }}"></script>
+            <script>
+                let typed = new Typed('.typed-words', {
+                    strings: ["счастье"," здоровье","богатство"],
+                    typeSpeed: 80,
+                    backSpeed: 80,
+                    backDelay: 4000,
+                    startDelay: 1000,
+                    loop: true,
+                    showCursor: true
+                });
+            </script>
+
+            <script src="{{ asset('assets/main/js/main.js') }}"></script>
+    {% endblock %}
+    </body>
+</html>

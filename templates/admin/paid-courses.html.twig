@@ -1,0 +1,36 @@
+{% extends "admin/adminbase.html.twig" %}
+{% block body %}
+    <div class="container-fluid">
+        <div class="row no-gutters">
+            <div class="col-12">
+                <h1 class="display-4 text-center mt-5">
+                    {{ title }}
+                </h1>
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid">
+        <div class="row no-gutters">
+            <div class="col-12 mt-5">
+                <a href="{{ path('free_course_make') }}" class="btn btn-success">Создать курс</a>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="container-fluid">
+        <div class="row no-gutters">
+            <div class="col-12">
+                <h2>Список курсов</h2>
+                <ul>
+                    {% for course in courses %}
+                        <li>{{ course.id }}{{ course.title }}</li>
+                        <div class="text-white bg-white"><a href="{{ path('course_delete', {'course': course.id }) }}">Удалить</a></div>
+                        <div class="text-white bg-white"><a href="{{ path('update_course', {'course': course.id }) }}">Обновить</a></div>
+
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+    </div>
+{% endblock %}

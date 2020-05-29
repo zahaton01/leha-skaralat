@@ -1,0 +1,7 @@
+{% extends "admin/adminbase.html.twig" %}
+{% block body %}
+<h1>Создать курс</h1>
+    {{ form_start(course_form) }}
+    {{ form(course_form) }}
+    {{ form_end(course_form) }}
+{% endblock %}

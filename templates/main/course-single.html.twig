@@ -1,0 +1,120 @@
+{% extends "main/base.html.twig" %}
+{% block body %}
+
+    <div class="site-blocks-cover overlay" style="background-image: url({{ asset('assets/main/images/hero_bg_2.jpg') }}); min-height: 150px; max-height: 160px;" data-aos="fade" data-stellar-background-ratio="0.5" >
+        <div class="container">
+            <div class="row align-items-center justify-content-center text-center">
+
+                <div class="col-md-10">
+
+                    <div class="row justify-content-center mb-4">
+                        <div class="col-md-10 text-center">
+                            <h1>{{ asset(course.title) }}</h1>
+                            <p data-aos="fade-up" data-aos-delay="100">Posted by Skarlat <span class="mx-3">{{ course.createdAt|date("F jS \\a\\t g:ia") }}</span> </p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <div class="site-section">
+    <div class="container">
+    <div class="row">
+
+    <div class="col-6 col-md-6">
+        <h1>{{ asset(course.title) }}</h1>
+
+        <p class="mb-4"><img src="{{ asset('uploads/courseimages/' ~ course.imageFilename) }}" alt="Image" class="img-fluid" style="height: 300px"></p>
+        <div class="pt-5">
+            <p><i><a href="#"># {{ course.keywords }}</a></i></p>
+        </div>
+    </div>
+    <div class="col-6 col-md-6" style="margin-top: 5%">
+        <p>{{ asset(course.description) }}</p>
+        <p style="color: #ea728c; font-weight: bold">Posted by Skarlat<span class="mx-3">{{ course.createdAt|date("F jS \\a\\t g:ia") }}</span></p>
+    </div>
+    </div>
+
+    <div class="row">
+        <div class="col">
+            {{ asset(course.content) }}
+        </div>
+    </div>
+
+        <div class="row">
+            <div class="col">
+                <iframe width="85%" height="450px" src="https://www.youtube.com/embed/{{ course.youtube }}" frameborder="0"
+                        allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+            </div>
+        </div>
+
+        {#<div class="row">
+            <div class="col">
+                Audio
+            </div>
+        </div>#}
+
+        <div class="row">
+            <div class="col-6">
+
+        <div class="pt-5">
+            <h3 class="mb-5">Комментарии</h3>
+            {% for comment in course.comments %}
+
+            <ul class="comment-list">
+                <li class="comment">
+
+                    <div class="comment-body">
+                        <h3>Автор: {{ comment.author }}</h3>
+                        <div class="meta">Дата: {{ comment.createdAt|date("F jS \\a\\t g:ia") }}</div>
+                        <p>{{ comment.content }}</p>
+                        {% if is_granted('ROLE_ADMIN') %}
+                        <div class="text-white bg-white"><a href="{{ path('comment_update_form', {'course': course.id, 'comment': comment.id }) }}">Edit</a></div>
+                    <div class="text-white bg-white"><a href="{{ path('comment_delete', {'course': course.id, 'comment': comment.id }) }}">Delete</a></div>
+                        {% endif %}
+                    </div>
+                </li>
+            </ul>
+            {% endfor %}
+
+        </div>
+            </div>
+                <div class="col-6">
+
+
+        {{ render(controller('App\\Controller\\Main\\CommentController::create', {'course': course.id })) }}
+
+
+
+
+
+    </div>
+
+
+    </div>
+
+
+    </div>
+    </div>
+
+
+    <div class="mt-5 block-cta-1 primary-overlay" style="background-image: url({{ asset('assets/main/images/hero_bg_2.jpg') }})">
+        <div class="container">
+            <div class="row align-items-center justify-content-between">
+                <div class="col-lg-7 mb-4 mb-lg-0">
+                    <h2 class="mb-3 mt-0 text-white">Скидка 30% на первую покупку</h2>
+                    <p class="mb-0 text-white lead">Хотите получить лучшие практики тетахилинга в постоянное исспользование? Тогда я жду вас!</p>
+                </div>
+                <div class="col-lg-4">
+                    <p class="mb-0"><a href="{{ path('contact_us') }}" class="btn btn-outline-white text-white btn-md btn-pill px-5 font-weight-bold btn-block">Получить доступ</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

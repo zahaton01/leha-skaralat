@@ -1,0 +1,23 @@
+
+
+    <div class="comment-form-wrap pt-5">
+        <h3 class="mb-5">Оставьте комментарий</h3>
+{#        <form action="#" class="p-5 bg-light">#}
+            {{ form_start(form) }}
+
+            <div class="form-group">
+                <label for="textarea">{{ form_label(form.author) }}</label><br>
+                {{ form_widget(form.author) }}
+            </div>
+
+            <div class="form-group">
+                <label for="textarea">{{ form_label(form.content) }}</label><br>
+                {{ form_widget(form.content) }}
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Отправить" class="btn btn-pill btn-primary text-white btn-md">
+                {{ form_end(form) }}
+
+            </div>
+
+    </div>
